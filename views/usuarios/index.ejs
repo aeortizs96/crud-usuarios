@@ -1,0 +1,78 @@
+<%- include ../layouts/cabecera.ejs  %> 
+
+        <br/>
+        <br/>
+
+         <a href="/usuarios/crear" class="btn btn-primary" type="button">Crear un nuevo usuario</a>   
+         <br/>
+         <br/>
+ 
+        <table class="table table-light">
+            <thead class="thead-light">
+                <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Apellido</th>
+                    <th>Edad</th>
+                    <th>Correo</th>
+                    <th>Nacionalidad</th>
+                    <th>CI</th>
+                    <th>Foto</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+    
+                <% for( let usuario = 0; usuario < usuarios.length; usuario++ ) { %>
+                    <tr>
+                        <td> <%=usuarios[usuario].id %> </td>
+
+                        <td> <%=usuarios[usuario].nombre %> </td>
+
+                        <td> <%=usuarios[usuario].apellido %> </td>
+
+                        <td> <%=usuarios[usuario].edad %> </td>
+
+                        <td> <%=usuarios[usuario].correo %> </td>
+
+                        <td> <%=usuarios[usuario].nacionalidad %> </td>
+
+                        <td> <%=usuarios[usuario].ci %> </td>
+
+                        <td> 
+                            <img class="img-thumbnail" width="100" src="images/<%=usuarios[usuario].imagen %>" alt="">
+                             
+                        </td>
+
+                        <td>
+                            
+                            <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
+                                
+                                <form class="form-inline" method="get" action="/usuarios/editar/<%=usuarios[usuario].id %>">
+                                    
+                                    <button class="btn btn-warning" type="submit">Editar</button>
+
+                                </form>
+
+                            </div> 
+
+                            <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
+                                
+                                <form class="form-inline" method="post" action="/usuarios/eliminar/<%=usuarios[usuario].id %>">
+                                    
+                                    <button class="btn btn-danger" type="submit">Borrar</button>
+
+                                </form>
+
+                            </div>    
+
+                            </td>
+                    </tr>
+    
+                <% } %>
+    
+                
+            </tbody>
+        </table>
+
+        <%- include ../layouts/pie.ejs  %> 
